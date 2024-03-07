@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ppdb_bedas/main.dart';
+import 'package:ppdb_bedas/Repository.dart';
+import 'package:ppdb_bedas/model.dart';
 
 class CekKelulusan extends StatefulWidget {
   const CekKelulusan({Key? key}) : super(key: key);
@@ -10,19 +11,42 @@ class CekKelulusan extends StatefulWidget {
 
 class _CekKelulusanState extends State<CekKelulusan> {
   final SearchController controller = SearchController();
+  final Repository repository = Repository();
+  List<data_murid> muridList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getDataFromApi();
+  }
+
+  void getDataFromApi() async {
+    try {
+      List<data_murid> data = await repository.getData();
+      setState(() {
+        muridList = data;
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  List<data_murid> searchMurid(String query) {
+    return muridList.where((murid) =>
+        murid.nama.toLowerCase().contains(query.toLowerCase())).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context); // Menggunakan tema dari konteks
+    final ThemeData themeData = Theme.of(context);
 
-    return MaterialApp( // Wrap your widget with MaterialApp
+    return MaterialApp(
       localizationsDelegates: [
-        // Add the delegates needed for MaterialLocalization
         DefaultMaterialLocalizations.delegate,
         DefaultWidgetsLocalizations.delegate,
       ],
       supportedLocales: [
-        const Locale('en', 'US'), // Change the locale to the one you support
+        const Locale('en', 'US'),
       ],
       title: 'Your App',
       home: Scaffold(
@@ -40,17 +64,16 @@ class _CekKelulusanState extends State<CekKelulusan> {
                 );
               },
               suggestionsBuilder: (BuildContext context, SearchController controller) {
-                return List.generate(5, (int index) {
-                  final String item = 'item $index';
+                return muridList.map((murid) {
                   return ListTile(
-                    title: Text(item),
+                    title: Text(murid.nama),
                     onTap: () {
                       setState(() {
-                        controller.closeView(item);
+                        controller.closeView(murid.nama);
                       });
                     },
                   );
-                });
+                }).toList();
               },
             ),
             Center(
