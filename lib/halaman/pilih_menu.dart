@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppdb_bedas/uttils.dart';
 
-class page_1 extends StatelessWidget {
+class pilih_menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
@@ -73,7 +73,7 @@ class page_1 extends StatelessWidget {
                   ElevatedButton( // Ubah menjadi ElevatedButton
                     onPressed: () {
 
-                      Navigator.pushNamed(context, '/page_2');// Aksi ketika tombol pertama ditekan
+                      Navigator.pushNamed(context, '/CekKelulusan');// Aksi ketika tombol pertama ditekan
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xffffffff), // Warna latar belakang tombol

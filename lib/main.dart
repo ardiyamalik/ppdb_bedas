@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
+import 'halaman/CekKelulusan.dart';
 import 'halaman/pilih_menu.dart';
 
+void main() => runApp(SearchBarApp());
 
-void main() => runApp(MyApp());
+class SearchBarApp extends StatefulWidget {
+  const SearchBarApp({Key? key}) : super(key: key);
+
+  @override
+  State<SearchBarApp> createState() => _SearchBarAppState();
+}
+
+class _SearchBarAppState extends State<SearchBarApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter',
+      color: Colors.blue,
+      home: MyApp(),
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -10,14 +28,17 @@ class MyApp extends StatelessWidget {
     return WidgetsApp(
       title: 'Flutter',
       color: Colors.blue,
-      builder: (context, _navigator) {
+      builder: (context, navigator) {
         return Navigator(
           initialRoute: '/',
           onGenerateRoute: (settings) {
             WidgetBuilder builder;
             switch (settings.name) {
               case '/':
-                builder = (BuildContext _) => page_1();
+                builder = (BuildContext _) => pilih_menu();
+                break;
+              case '/CekKelulusan':
+                builder = (BuildContext _) => CekKelulusan();
                 break;
               default:
                 throw Exception('Invalid route: ${settings.name}');
