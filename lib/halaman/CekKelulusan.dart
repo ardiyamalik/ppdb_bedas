@@ -12,10 +12,12 @@ class CekKelulusan extends StatefulWidget {
 class _CekKelulusanState extends State<CekKelulusan> {
   final Repository repository = Repository();
   List<data_murid> muridList = [];
+  late TextEditingController searchController;
 
   @override
   void initState() {
     super.initState();
+    searchController = TextEditingController();
     getDataFromApi();
   }
 
@@ -27,6 +29,14 @@ class _CekKelulusanState extends State<CekKelulusan> {
       });
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  List<data_murid> getFilteredMuridList(String query) {
+    if (query.isEmpty) {
+      return muridList;
+    } else {
+      return muridList.where((murid) => murid.nisn.toString().contains(query)).toList();
     }
   }
 
@@ -42,45 +52,60 @@ class _CekKelulusanState extends State<CekKelulusan> {
       ],
       title: 'PPDB_BEDAS',
       home: Scaffold(
-        appBar: AppBar(title: const Text('Data Murid')),
+        appBar: AppBar(
+          title: Text('Data Murid'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.search),
+            ),
+            Expanded(
+              child: TextField(
+                controller: searchController,
+                onChanged: (value) {
+                  setState(() {});
+                },
+                decoration: InputDecoration(
+                  hintText: 'Cari berdasarkan NISN',
+                  border: InputBorder.none,
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(8),
+                ),
+              ),
+            ),
+          ],
+        ),
         body: muridList.isEmpty
-            ? Center(child: CircularProgressIndicator()) // Menampilkan indikator loading jika data masih diambil dari API
+            ? Center(child: CircularProgressIndicator())
             : ListView.builder(
-          itemCount: muridList.length,
+          itemCount: getFilteredMuridList(searchController.text).length,
           itemBuilder: (context, index) {
+            final murid = getFilteredMuridList(searchController.text)[index];
             return ListTile(
-              title: Text(muridList[index].nama),
+              title: Text(murid.nama),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('NISN: ${muridList[index].nisn}'),
-                  Text('Jenis Kelamin: ${muridList[index].jenis_kelamin}'),
-                  Text('Tanggal Lahir: ${muridList[index].tanggal_lahir}'),
-                  Text('Asal Sekolah: ${muridList[index].asal_sekolah}'),
-                  Text('Tujuan Sekolah: ${muridList[index].tujuan_sekolah}'),
-                  Text('Status Penerimaan: ${muridList[index].status_penerimaan}'),
-                  Text('ID: ${muridList[index].id}'),
+                  Text('NISN: ${murid.nisn}'),
                 ],
               ),
               onTap: () {
-                // Handle when a murid is tapped
-                // Contoh:
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text(muridList[index].nama),
+                      title: Text(murid.nama),
                       content: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('NISN: ${muridList[index].nisn}'),
-                          Text('Jenis Kelamin: ${muridList[index].jenis_kelamin}'),
-                          Text('Tanggal Lahir: ${muridList[index].tanggal_lahir}'),
-                          Text('Asal Sekolah: ${muridList[index].asal_sekolah}'),
-                          Text('Tujuan Sekolah: ${muridList[index].tujuan_sekolah}'),
-                          Text('Status Penerimaan: ${muridList[index].status_penerimaan}'),
-                          Text('ID: ${muridList[index].id}'),
+                          Text('NISN: ${murid.nisn}'),
+                          Text('Jenis Kelamin: ${murid.jenis_kelamin}'),
+                          Text('Tanggal Lahir: ${murid.tanggal_lahir}'),
+                          Text('Asal Sekolah: ${murid.asal_sekolah}'),
+                          Text('Tujuan Sekolah: ${murid.tujuan_sekolah}'),
+                          Text('Status Penerimaan: ${murid.status_penerimaan}'),
+                          Text('ID: ${murid.id}'),
                         ],
                       ),
                       actions: [
