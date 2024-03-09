@@ -120,6 +120,7 @@ class _CekKelulusanState extends State<CekKelulusan> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text('Nama: ${murid.nama}'),
                           Text('NISN: ${murid.nisn}'),
                           Text('Jenis Kelamin: ${murid.jenis_kelamin}'),
                           Text('Tanggal Lahir: ${murid.tanggal_lahir}'),
@@ -139,6 +140,7 @@ class _CekKelulusanState extends State<CekKelulusan> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
+                                  Text('Nama: ${murid.nama}'),
                                   Text('NISN: ${murid.nisn}'),
                                   Text('Jenis Kelamin: ${murid.jenis_kelamin}'),
                                   Text('Tanggal Lahir: ${murid.tanggal_lahir}'),
