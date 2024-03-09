@@ -1,3 +1,4 @@
+// Tambahkan import untuk Font Montserrat
 import 'package:flutter/material.dart';
 import 'package:ppdb_bedas/Repository.dart';
 import 'package:ppdb_bedas/model.dart';
@@ -53,7 +54,7 @@ class _CekKelulusanState extends State<CekKelulusan> {
       title: 'PPDB_BEDAS',
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor:  Color(0xff00686c), // Mengubah warna app bar menjadi hijau tua
+          backgroundColor: Color(0xff00686c), // Mengubah warna app bar menjadi hijau tua
           title: Text('Data Murid'),
           actions: [
             Expanded(
@@ -91,7 +92,16 @@ class _CekKelulusanState extends State<CekKelulusan> {
             child: Container(
               width: MediaQuery.of(context).size.width * 0.8, // Lebar ListView 80% dari lebar layar
               child: searchController.text.isEmpty // Tampilkan hanya jika searchbox tidak kosong
-                  ? Center(child: Text('Silakan masukkan NISN untuk melakukan pencarian'))
+                  ? Center(
+                child: Text(
+                  'Silakan masukkan NISN untuk melakukan pencarian',
+                  style: TextStyle(
+                    fontFamily: 'Montserrat',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              )
                   : muridList.isEmpty
                   ? Center(child: CircularProgressIndicator())
                   : ListView.builder(
