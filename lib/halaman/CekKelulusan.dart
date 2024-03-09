@@ -56,26 +56,32 @@ class _CekKelulusanState extends State<CekKelulusan> {
           backgroundColor:  Color(0xff00686c), // Mengubah warna app bar menjadi hijau tua
           title: Text('Data Murid'),
           actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.search),
-            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 8, 0), // Menambahkan padding di sebelah kanan search box
-                child: TextField(
-                  controller: searchController,
-                  onChanged: (value) {
-                    setState(() {});
-                  },
-                  decoration: InputDecoration(
-                    hintText: 'Cari berdasarkan NISN',
-                    border: InputBorder.none,
-                    isDense: true,
-                    contentPadding: EdgeInsets.all(8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white, // Warna kotak putih
+                  ),
+                  child: TextField(
+                    controller: searchController,
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Cari berdasarkan NISN',
+                      border: InputBorder.none,
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
                   ),
                 ),
               ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.search),
             ),
           ],
         ),

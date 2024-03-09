@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'halaman/CekKelulusan.dart';
 import 'halaman/pilih_menu.dart';
 import 'halaman/MasukAplikasi.dart';
+import 'halaman/LokasiPendaftaran.dart';
 
 void main() => runApp(SearchBarApp());
 
@@ -44,6 +45,8 @@ class MyApp extends StatelessWidget {
               case '/MasukAplikasi' :
                 builder = (BuildContext _) => MasukAplikasi();
                 break;
+              case '/LokasiPendaftaran' :
+                builder = (BuildContext _) => LokasiPendaftaran();
               default:
                 throw Exception('Invalid route: ${settings.name}');
             }

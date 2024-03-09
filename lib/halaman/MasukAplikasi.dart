@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:ppdb_bedas/halaman/CekKelulusan.dart';
+import 'package:ppdb_bedas/halaman/LokasiPendaftaran.dart';
 
 class MasukAplikasi extends StatelessWidget {
   @override
@@ -102,7 +103,12 @@ class MasukAplikasi extends StatelessWidget {
                     left: 61*fem,
                     top: 264*fem,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LokasiPendaftaran()),
+                        );// Tambahkan logika untuk aksi tombol di sini
+                      },
                       style: TextButton.styleFrom (
                         padding: EdgeInsets.zero,
                       ),
