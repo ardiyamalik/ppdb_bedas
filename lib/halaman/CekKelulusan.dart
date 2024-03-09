@@ -10,7 +10,6 @@ class CekKelulusan extends StatefulWidget {
 }
 
 class _CekKelulusanState extends State<CekKelulusan> {
-  final SearchController controller = SearchController();
   final Repository repository = Repository();
   List<data_murid> muridList = [];
 
@@ -31,15 +30,8 @@ class _CekKelulusanState extends State<CekKelulusan> {
     }
   }
 
-  List<data_murid> searchMurid(String query) {
-    return muridList.where((murid) =>
-        murid.nama.toLowerCase().contains(query.toLowerCase())).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-
     return MaterialApp(
       localizationsDelegates: [
         DefaultMaterialLocalizations.delegate,
@@ -48,40 +40,40 @@ class _CekKelulusanState extends State<CekKelulusan> {
       supportedLocales: [
         const Locale('en', 'US'),
       ],
-      title: 'Your App',
+      title: 'PPDB_BEDAS',
       home: Scaffold(
-        appBar: AppBar(title: const Text('Masukan NISN Anda')),
-        body: Column(
-          children: <Widget>[
-            SearchAnchor(
-              searchController: controller,
-              builder: (BuildContext context, SearchController controller) {
-                return IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {
-                    controller.openView();
+        appBar: AppBar(title: const Text('Data Murid')),
+        body: muridList.isEmpty
+            ? Center(child: CircularProgressIndicator()) // Menampilkan indikator loading jika data masih diambil dari API
+            : ListView.builder(
+          itemCount: muridList.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(muridList[index].nama),
+              subtitle: Text('NISN: ${muridList[index].nisn}'),
+              onTap: () {
+                // Handle when a murid is tapped
+                // Contoh:
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(muridList[index].nama),
+                      content: Text('NISN: ${muridList[index].nisn}'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
                   },
                 );
               },
-              suggestionsBuilder: (BuildContext context, SearchController controller) {
-                return muridList.map((murid) {
-                  return ListTile(
-                    title: Text(murid.nama),
-                    onTap: () {
-                      setState(() {
-                        controller.closeView(murid.nama);
-                      });
-                    },
-                  );
-                }).toList();
-              },
-            ),
-            Center(
-              child: controller.text.isEmpty
-                  ? const Text('No item selected')
-                  : Text('Selected item: ${controller.value.text}'),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

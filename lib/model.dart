@@ -16,32 +16,19 @@ class data_murid {
     required this.tujuan_sekolah,
     required this.status_penerimaan,
     required this.nisn,
-    required this.id
+    required this.id,
   });
 
   factory data_murid.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-      'nisn': int nisn,
-      'nama': String nama,
-      'jenis_kelamin': String jenis_kelamin,
-      'tanggal_lahir' : String tanggal_lahir,
-      'asal_sekolah' : String asal_sekolah,
-      'tujuan_sekolah' : String tujuan_sekolah,
-      'status_penerimaan' : String status_penerimaan,
-      'id' : int id,
-      } =>
-          data_murid(
-            nisn: nisn,
-            nama: nama,
-            jenis_kelamin: jenis_kelamin,
-            tanggal_lahir: tanggal_lahir,
-            asal_sekolah: asal_sekolah,
-            tujuan_sekolah: tujuan_sekolah,
-            status_penerimaan: status_penerimaan,
-            id: id,
-          ),
-      _ => throw const FormatException('Failed to load album.'),
-    };
+    return data_murid(
+      nisn: json['nisn'] as int,
+      nama: json['nama'] as String,
+      jenis_kelamin: json['jenis_kelamin'] as String,
+      tanggal_lahir: json['tanggal_lahir'] as String,
+      asal_sekolah: json['asal_sekolah'] as String,
+      tujuan_sekolah: json['tujuan_sekolah'] as String,
+      status_penerimaan: json['status_penerimaan'] as String,
+      id: json['id'] as int,
+    );
   }
 }
