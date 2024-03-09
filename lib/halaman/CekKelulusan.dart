@@ -34,7 +34,7 @@ class _CekKelulusanState extends State<CekKelulusan> {
 
   List<data_murid> getFilteredMuridList(String query) {
     if (query.isEmpty) {
-      return muridList;
+      return [];
     } else {
       return muridList.where((murid) => murid.nisn.toString().contains(query)).toList();
     }
@@ -53,6 +53,7 @@ class _CekKelulusanState extends State<CekKelulusan> {
       title: 'PPDB_BEDAS',
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor:  Color(0xff00686c), // Mengubah warna app bar menjadi hijau tua
           title: Text('Data Murid'),
           actions: [
             IconButton(
@@ -60,44 +61,48 @@ class _CekKelulusanState extends State<CekKelulusan> {
               icon: Icon(Icons.search),
             ),
             Expanded(
-              child: TextField(
-                controller: searchController,
-                onChanged: (value) {
-                  setState(() {});
-                },
-                decoration: InputDecoration(
-                  hintText: 'Cari berdasarkan NISN',
-                  border: InputBorder.none,
-                  isDense: true,
-                  contentPadding: EdgeInsets.all(8),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 8, 0), // Menambahkan padding di sebelah kanan search box
+                child: TextField(
+                  controller: searchController,
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Cari berdasarkan NISN',
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: EdgeInsets.all(8),
+                  ),
                 ),
               ),
             ),
           ],
         ),
-        body: muridList.isEmpty
-            ? Center(child: CircularProgressIndicator())
-            : ListView.builder(
-          itemCount: getFilteredMuridList(searchController.text).length,
-          itemBuilder: (context, index) {
-            final murid = getFilteredMuridList(searchController.text)[index];
-            return ListTile(
-              title: Text(murid.nama),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('NISN: ${murid.nisn}'),
-                ],
-              ),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
+        body: Container(
+          color: Colors.grey[300], // Mengubah warna latar belakang menjadi abu-abu
+          child: Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.8, // Lebar ListView 80% dari lebar layar
+              child: searchController.text.isEmpty // Tampilkan hanya jika searchbox tidak kosong
+                  ? Center(child: Text('Silakan masukkan NISN untuk melakukan pencarian'))
+                  : muridList.isEmpty
+                  ? Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                itemCount: getFilteredMuridList(searchController.text).length,
+                itemBuilder: (context, index) {
+                  final murid = getFilteredMuridList(searchController.text)[index];
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 8), // Menambahkan margin vertikal
+                    padding: EdgeInsets.all(16), // Menambahkan padding
+                    decoration: BoxDecoration(
+                      color: Colors.white, // Mengubah warna latar belakang menjadi putih
+                      borderRadius: BorderRadius.circular(10), // Mengubah bentuk menjadi kotak dengan sudut melengkung
+                    ),
+                    child: ListTile(
                       title: Text(murid.nama),
-                      content: Column(
+                      subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text('NISN: ${murid.nisn}'),
                           Text('Jenis Kelamin: ${murid.jenis_kelamin}'),
@@ -108,20 +113,43 @@ class _CekKelulusanState extends State<CekKelulusan> {
                           Text('ID: ${murid.id}'),
                         ],
                       ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(murid.nama),
+                              content: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text('NISN: ${murid.nisn}'),
+                                  Text('Jenis Kelamin: ${murid.jenis_kelamin}'),
+                                  Text('Tanggal Lahir: ${murid.tanggal_lahir}'),
+                                  Text('Asal Sekolah: ${murid.asal_sekolah}'),
+                                  Text('Tujuan Sekolah: ${murid.tujuan_sekolah}'),
+                                  Text('Status Penerimaan: ${murid.status_penerimaan}'),
+                                  Text('ID: ${murid.id}'),
+                                ],
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
                           },
-                          child: Text('OK'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            );
-          },
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ),
       ),
     );

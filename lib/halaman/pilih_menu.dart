@@ -108,7 +108,7 @@ class pilih_menu extends StatelessWidget {
                   SizedBox(width: 45 * fem), // Tambahkan jarak antara tombol
                   ElevatedButton( // Ubah menjadi ElevatedButton
                     onPressed: () {
-                      Navigator.pushNamed(context, '/page_3');// Aksi ketika tombol kedua ditekan
+                      Navigator.pushNamed(context, '/MasukAplikasi');// Aksi ketika tombol kedua ditekan
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xffffffff), // Warna latar belakang tombol
