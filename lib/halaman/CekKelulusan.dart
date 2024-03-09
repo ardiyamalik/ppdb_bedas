@@ -90,7 +90,7 @@ class _CekKelulusanState extends State<CekKelulusan> {
           color: Colors.grey[300], // Mengubah warna latar belakang menjadi abu-abu
           child: Center(
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.8, // Lebar ListView 80% dari lebar layar
+              width: MediaQuery.of(context).size.width * 0.9, // Lebar ListView 80% dari lebar layar
               child: searchController.text.isEmpty // Tampilkan hanya jika searchbox tidak kosong
                   ? Center(
                 child: Text(
@@ -116,18 +116,12 @@ class _CekKelulusanState extends State<CekKelulusan> {
                       borderRadius: BorderRadius.circular(10), // Mengubah bentuk menjadi kotak dengan sudut melengkung
                     ),
                     child: ListTile(
-                      title: Text(murid.nama),
+                      title: Text(murid.name),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Nama: ${murid.nama}'),
+                          Text('Nama: ${murid.name}'),
                           Text('NISN: ${murid.nisn}'),
-                          Text('Jenis Kelamin: ${murid.jenis_kelamin}'),
-                          Text('Tanggal Lahir: ${murid.tanggal_lahir}'),
-                          Text('Asal Sekolah: ${murid.asal_sekolah}'),
-                          Text('Tujuan Sekolah: ${murid.tujuan_sekolah}'),
-                          Text('Status Penerimaan: ${murid.status_penerimaan}'),
-                          Text('ID: ${murid.id}'),
                         ],
                       ),
                       onTap: () {
@@ -135,19 +129,18 @@ class _CekKelulusanState extends State<CekKelulusan> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              title: Text(murid.nama),
+                              title: Text(murid.name),
                               content: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text('Nama: ${murid.nama}'),
+                                  Text('Nama: ${murid.name}'),
                                   Text('NISN: ${murid.nisn}'),
                                   Text('Jenis Kelamin: ${murid.jenis_kelamin}'),
                                   Text('Tanggal Lahir: ${murid.tanggal_lahir}'),
                                   Text('Asal Sekolah: ${murid.asal_sekolah}'),
                                   Text('Tujuan Sekolah: ${murid.tujuan_sekolah}'),
                                   Text('Status Penerimaan: ${murid.status_penerimaan}'),
-                                  Text('ID: ${murid.id}'),
                                 ],
                               ),
                               actions: [

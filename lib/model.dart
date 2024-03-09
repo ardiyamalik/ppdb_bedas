@@ -1,5 +1,5 @@
 class data_murid {
-  final String nama;
+  final String name;
   final String jenis_kelamin;
   final String tanggal_lahir;
   final String asal_sekolah;
@@ -9,7 +9,7 @@ class data_murid {
   final int nisn;
 
   const data_murid({
-    required this.nama,
+    required this.name,
     required this.jenis_kelamin,
     required this.tanggal_lahir,
     required this.asal_sekolah,
@@ -21,8 +21,8 @@ class data_murid {
 
   factory data_murid.fromJson(Map<String, dynamic> json) {
     return data_murid(
+      name: json['name'] != null ? json['name'].toString() : '',
       nisn: json['nisn'] != null ? int.parse(json['nisn'].toString()) : 0,
-      nama: json['nama'] != null ? json['nama'].toString() : '',
       jenis_kelamin: json['jenis_kelamin'] != null ? json['jenis_kelamin'].toString() : '',
       tanggal_lahir: json['tanggal_lahir'] != null ? json['tanggal_lahir'].toString() : '',
       asal_sekolah: json['asal_sekolah'] != null ? json['asal_sekolah'].toString() : '',
