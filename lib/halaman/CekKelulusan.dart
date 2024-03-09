@@ -50,7 +50,18 @@ class _CekKelulusanState extends State<CekKelulusan> {
           itemBuilder: (context, index) {
             return ListTile(
               title: Text(muridList[index].nama),
-              subtitle: Text('NISN: ${muridList[index].nisn}'),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('NISN: ${muridList[index].nisn}'),
+                  Text('Jenis Kelamin: ${muridList[index].jenis_kelamin}'),
+                  Text('Tanggal Lahir: ${muridList[index].tanggal_lahir}'),
+                  Text('Asal Sekolah: ${muridList[index].asal_sekolah}'),
+                  Text('Tujuan Sekolah: ${muridList[index].tujuan_sekolah}'),
+                  Text('Status Penerimaan: ${muridList[index].status_penerimaan}'),
+                  Text('ID: ${muridList[index].id}'),
+                ],
+              ),
               onTap: () {
                 // Handle when a murid is tapped
                 // Contoh:
@@ -59,7 +70,19 @@ class _CekKelulusanState extends State<CekKelulusan> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text(muridList[index].nama),
-                      content: Text('NISN: ${muridList[index].nisn}'),
+                      content: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('NISN: ${muridList[index].nisn}'),
+                          Text('Jenis Kelamin: ${muridList[index].jenis_kelamin}'),
+                          Text('Tanggal Lahir: ${muridList[index].tanggal_lahir}'),
+                          Text('Asal Sekolah: ${muridList[index].asal_sekolah}'),
+                          Text('Tujuan Sekolah: ${muridList[index].tujuan_sekolah}'),
+                          Text('Status Penerimaan: ${muridList[index].status_penerimaan}'),
+                          Text('ID: ${muridList[index].id}'),
+                        ],
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {

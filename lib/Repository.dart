@@ -11,7 +11,6 @@ class Repository {
       final response = await http.get(Uri.parse(_baseUrl));
 
       if (response.statusCode == 200) {
-        print(response.body);
         Iterable it = jsonDecode(response.body);
         List<data_murid> blog =
         it.map((e) => data_murid.fromJson(e)).toList();

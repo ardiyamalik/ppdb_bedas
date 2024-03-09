@@ -21,14 +21,14 @@ class data_murid {
 
   factory data_murid.fromJson(Map<String, dynamic> json) {
     return data_murid(
-      nisn: json['nisn'] as int,
-      nama: json['nama'] as String,
-      jenis_kelamin: json['jenis_kelamin'] as String,
-      tanggal_lahir: json['tanggal_lahir'] as String,
-      asal_sekolah: json['asal_sekolah'] as String,
-      tujuan_sekolah: json['tujuan_sekolah'] as String,
-      status_penerimaan: json['status_penerimaan'] as String,
-      id: json['id'] as int,
+      nisn: json['nisn'] != null ? int.parse(json['nisn'].toString()) : 0,
+      nama: json['nama'] != null ? json['nama'].toString() : '',
+      jenis_kelamin: json['jenis_kelamin'] != null ? json['jenis_kelamin'].toString() : '',
+      tanggal_lahir: json['tanggal_lahir'] != null ? json['tanggal_lahir'].toString() : '',
+      asal_sekolah: json['asal_sekolah'] != null ? json['asal_sekolah'].toString() : '',
+      tujuan_sekolah: json['tujuan_sekolah'] != null ? json['tujuan_sekolah'].toString() : '',
+      status_penerimaan: json['status_penerimaan'] != null ? json['status_penerimaan'].toString() : '',
+      id: json['id'] != null ? int.parse(json['id'].toString()) : 0,
     );
   }
 }
