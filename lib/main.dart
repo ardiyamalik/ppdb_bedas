@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
                 break;
               case '/LokasiPendaftaran' :
                 builder = (BuildContext _) => LokasiPendaftaran();
+                break;
               default:
                 throw Exception('Invalid route: ${settings.name}');
             }
