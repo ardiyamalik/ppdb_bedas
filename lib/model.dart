@@ -8,6 +8,7 @@ class data_murid {
   final int id;
   final int nisn;
 
+
   const data_murid({
     required this.name,
     required this.jenis_kelamin,

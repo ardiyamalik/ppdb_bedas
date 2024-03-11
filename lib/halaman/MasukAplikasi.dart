@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:ppdb_bedas/halaman/CekKelulusan.dart';
 import 'package:ppdb_bedas/halaman/LokasiPendaftaran.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ppdb_bedas/halaman/DayaTampung.dart';
 
 class MasukAplikasi extends StatelessWidget {
   @override
@@ -167,7 +168,13 @@ class MasukAplikasi extends StatelessWidget {
                     left: 173 * fem,
                     top: 264 * fem,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                              DayaTampung()),
+                        ); // Tambahkan logika untuk aksi tombol di sini
+                      },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                       ),

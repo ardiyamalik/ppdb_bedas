@@ -1,4 +1,3 @@
-// Tambahkan import untuk Font Montserrat
 import 'package:flutter/material.dart';
 import 'package:ppdb_bedas/Repository.dart';
 import 'package:ppdb_bedas/model.dart';
@@ -54,19 +53,20 @@ class _CekKelulusanState extends State<CekKelulusan> {
       title: 'PPDB_BEDAS',
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xff00686c), // Mengubah warna app bar menjadi hijau tua
+          backgroundColor: Color(0xff00686c),
           title: Text('Data Murid'),
           actions: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 8, 0), // Menambahkan padding di sebelah kanan search box
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white, // Warna kotak putih
+                    color: Colors.white,
                   ),
                   child: TextField(
                     controller: searchController,
+                    keyboardType: TextInputType.number, // Keyboard hanya menampilkan angka
                     onChanged: (value) {
                       setState(() {});
                     },
@@ -80,18 +80,14 @@ class _CekKelulusanState extends State<CekKelulusan> {
                 ),
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.search),
-            ),
           ],
         ),
         body: Container(
-          color: Colors.grey[300], // Mengubah warna latar belakang menjadi abu-abu
+          color: Colors.grey[300],
           child: Center(
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.9, // Lebar ListView 80% dari lebar layar
-              child: searchController.text.isEmpty // Tampilkan hanya jika searchbox tidak kosong
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: searchController.text.isEmpty
                   ? Center(
                 child: Text(
                   'Silakan masukkan NISN untuk melakukan pencarian',
@@ -109,11 +105,11 @@ class _CekKelulusanState extends State<CekKelulusan> {
                 itemBuilder: (context, index) {
                   final murid = getFilteredMuridList(searchController.text)[index];
                   return Container(
-                    margin: EdgeInsets.symmetric(vertical: 8), // Menambahkan margin vertikal
-                    padding: EdgeInsets.all(16), // Menambahkan padding
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white, // Mengubah warna latar belakang menjadi putih
-                      borderRadius: BorderRadius.circular(10), // Mengubah bentuk menjadi kotak dengan sudut melengkung
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: ListTile(
                       title: Text(murid.name),
