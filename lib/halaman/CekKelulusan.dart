@@ -54,33 +54,49 @@ class _CekKelulusanState extends State<CekKelulusan> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xff00686c),
-          title: Text('Data Murid'),
-          actions: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                  ),
-                  child: TextField(
-                    controller: searchController,
-                    keyboardType: TextInputType.number, // Keyboard hanya menampilkan angka
-                    onChanged: (value) {
-                      setState(() {});
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'Cari berdasarkan NISN',
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: EdgeInsets.all(8),
-                    ),
+          title: Text(
+            'Cek Kelulusan',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(60.0),
+            // Sesuaikan dengan tinggi search box
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              // Sesuaikan jarak dari bawah AppBar
+              child: Container(
+                padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: TextField(
+                  controller: searchController,
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Cari berdasarkan NISN',
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: EdgeInsets.all(8),
                   ),
                 ),
               ),
             ),
-          ],
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
         body: Container(
           color: Colors.grey[300],

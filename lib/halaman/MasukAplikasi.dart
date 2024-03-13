@@ -4,6 +4,7 @@ import 'package:ppdb_bedas/halaman/CekKelulusan.dart';
 import 'package:ppdb_bedas/halaman/LokasiPendaftaran.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ppdb_bedas/halaman/DayaTampung.dart';
+import 'package:ppdb_bedas/halaman/JadwalPelaksanaan.dart';
 
 class MasukAplikasi extends StatelessWidget {
   @override
@@ -227,7 +228,13 @@ class MasukAplikasi extends StatelessWidget {
                     left: 286 * fem,
                     top: 264 * fem,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                              JadwalPelaksanaan()),
+                        ); // Tambahkan logika untuk aksi tombol di sini
+                      },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                       ),
@@ -499,7 +506,7 @@ class MasukAplikasi extends StatelessWidget {
   }
 
   _launchURL() async {
-    const url = 'https://www.instagram.com/ardiyamalik/'; // Ganti dengan URL website yang diinginkan
+    const url = 'https://www.instagram.com/dzakynfl/'; // Ganti dengan URL website yang diinginkan
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -35,8 +35,26 @@ class _LokasiPendaftaranState extends State<LokasiPendaftaran> {
     return MaterialApp(
       title: 'Lokasi Pendaftaran',
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xff00686c),
+          title: Text(
+            'Lokasi Pendaftaran',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
         body: Container(
-          color:  Color(0xff00686c),
+          color: Colors.grey[300],
           child: Center(
             child: Container(
               width: MediaQuery.of(context).size.width * 0.9,

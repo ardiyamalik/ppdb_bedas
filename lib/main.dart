@@ -4,6 +4,7 @@ import 'halaman/pilih_menu.dart';
 import 'halaman/MasukAplikasi.dart';
 import 'halaman/LokasiPendaftaran.dart';
 import 'halaman/DayaTampung.dart';
+import 'halaman/JadwalPelaksanaan.dart';
 
 void main() => runApp(SearchBarApp());
 
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
                 break;
               case '/DayaTampung' :
                 builder = (BuildContext _) => DayaTampung();
+                break;
+              case '/JadwalPelaksanaan' :
+                builder = (BuildContext _) => JadwalPelaksanaan();
                 break;
               default:
                 throw Exception('Invalid route: ${settings.name}');
